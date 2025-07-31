@@ -1,13 +1,27 @@
-*{
+/* index.css or App.css */
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-body{
+body, html {
+  height: 100%;
   font-family: sans-serif;
 }
 
-a{
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+a {
   text-decoration: none;
   color: black;
 }
@@ -16,10 +30,18 @@ a{
   color: green;
 }
 
-.nav-link{
+.nav-link {
   color: black;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: green;
+}
+
+footer {
+  width: 100%;
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
 }

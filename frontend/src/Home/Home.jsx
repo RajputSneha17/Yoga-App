@@ -1,7 +1,6 @@
 import React from "react";
 import Hero from "./Hero";
 import Benefits from "./Benefits";
-import Sessions from "./Sessions";
 import Other from "./Other";
 import Contact from "./Contact";
 
@@ -10,7 +9,6 @@ const Home = () => {
     <>
       <Hero/>
       <Benefits/>
-      <Sessions/>
       <Other/>
       <Contact/>
     </>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className="mt-5">
+    <div className="">
       <img src="yoga1.jpg" alt="yoga" className="img-fluid w-100" />
       <div className="bg-success p-3 fs-5 text-white">
         <marquee behavior="scroll" direction="left">
