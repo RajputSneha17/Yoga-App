@@ -1,7 +1,19 @@
 import React from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const NavBar = () => {
+const NavBar = ({setToken, token}) => {
+  
+  const removeToken = () => {
+    try {
+      localStorage.removeItem("token");
+      setToken(null);
+      toast.success("Logout successfully!");
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
+  };
   const autoCollapse = () =>
     window.innerWidth < 992 &&
     new window.bootstrap.Collapse(document.getElementById("navbarContent"), {
@@ -66,7 +78,18 @@ const NavBar = () => {
 
             {/* Login Button */}
             <div className="mt-3 mt-lg-0">
-              <button className="btn btn-outline-success px-4">Login</button>
+              {token ? (
+                <button
+                  className="btn btn-outline-danger px-4"
+                  onClick={removeToken} 
+                >
+                  logout
+                </button>
+              ) : (
+                <button className="btn btn-outline-success px-4" onClick={autoCollapse}>
+                  <NavLink to="/user">Login</NavLink>
+                </button>
+              )}
             </div>
           </div>
         </div>
