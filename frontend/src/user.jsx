@@ -15,7 +15,7 @@ const User = ({ url, setToken }) => {
     const endPoint = isLogin ? "/login" : "/register";
 
     try {
-      const res = await axios.post(`${url}${endPoint}`, {
+      const res = await axios.post(`${url}/user/${endPoint}`, {
         email,
         password,
       });

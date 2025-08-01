@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const SessionSchema = require("../Schema/SessionSchema.js");
 
-const SessionModel = mongoose.Model("Session", SessionSchema);
+const SessionModel = mongoose.model("Session", SessionSchema);
 
-module.exports =  SessionModel;
+module.exports = SessionModel;

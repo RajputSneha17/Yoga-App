@@ -1,21 +1,7 @@
-import React from "react";
+import axios from "axios";
 
-const Draft = () => {
-  const drafts = [
-    {
-      title: "Morning Yoga",
-      tags: ["yoga", "morning", "stretch"],
-      json_file_url: "https://example.com/yoga.json",
-      status: "draft",
-    },
-    {
-      title: "Evening Meditation",
-      tags: ["meditation", "evening", "relax"],
-      json_file_url: "https://example.com/meditate.json",
-      status: "draft",
-    },
-    // Add more drafts here...
-  ];
+const Draft = ({token}) => {
+  
 
   return (
     <div className="container py-4">

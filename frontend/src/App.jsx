@@ -20,7 +20,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/draft" element={<Draft />} />
+            <Route path="/draft" element={<Draft token={token} url={url}/>} />
             <Route path="/createsession" element={<Create />} />
             <Route path="/oursession" element={<Sessions />} />
             <Route path="/user" element={<User url={url} setToken={setToken}/>} />
