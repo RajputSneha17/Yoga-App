@@ -21,8 +21,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/draft" element={<Draft token={token} url={url}/>} />
-            <Route path="/createsession" element={<Create />} />
-            <Route path="/oursession" element={<Sessions />} />
+            <Route path="/createsession" element={<Create url={url} token={token}/>} />
+            <Route path="/oursession" element={<Sessions url={url}/>} />
             <Route path="/user" element={<User url={url} setToken={setToken}/>} />
           </Routes>
         </main>

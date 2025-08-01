@@ -6,7 +6,6 @@ const authMiddleware = async (req, res, next) => {
     return res.status(401).json({ error: "Unauthorized: Token missing" });
   }
   const token = authHeader.split(" ")[1];
-
   try {
     const decode = jwt.verify(token, process.env.MY_SECRET);
     req.userId = decode.userId;

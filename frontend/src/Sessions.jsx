@@ -1,94 +1,36 @@
-import React from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-const Sessions = () => {
+const Sessions = ({ url }) => {
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${url}/session/sessions`);
+      setData(res.data); // ✅ Corrected
+    } catch (err) {
+      console.error("Failed to fetch sessions:", err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="container py-5">
       <h2 className="text-center mb-5">Our All Sessions</h2>
       <div className="row justify-content-center gap-4">
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Yoga Basics</h3>
-            <p>breathing, postures</p>
-            <button className="btn btn-outline-success">Learn More</button>
+        {data.map((item, index) => (
+          <div key={index} className="col-md-3">
+            <div className="card p-4 text-center">
+              <h3>{item.title}</h3>
+              <p>{item.tags}</p>
+              <p>Status: {item.status}</p>
+              <button className="btn btn-outline-success">Learn More</button>
+            </div>
           </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Meditation</h3>
-            <p>focus, calmness</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Flexibility</h3>
-            <p>stretch, balance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card p-4 text-center">
-            <h3>Strength</h3>
-            <p>core, endurance</p>
-            <button className="btn btn-outline-success">Learn More</button>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

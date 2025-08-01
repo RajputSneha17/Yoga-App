@@ -1,21 +1,38 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
+const Draft = ({ token, url }) => {
+  const [data, setData] = useState([]);
+  const fetchData = async () => {
+    try {
+      
+      console.log(token);
+      const res = await axios.get(`${url}/session/my-sessions`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = res.data;
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const Draft = ({token}) => {
-  
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="container py-4">
       <h3 className="mb-4 fw-semibold">Your Drafts</h3>
 
       <div className="row g-4">
-        {drafts.map((item, index) => (
+        {data.map((item, index) => (
           <div className="col-md-6" key={index}>
             <div className="card shadow-sm border-0 h-100">
               <div className="card-body">
                 <h5 className="card-title fw-bold">{item.title}</h5>
 
                 <p className="mb-2">
-                  <strong>Tags:</strong> {item.tags.join(", ")}
+                  <strong>Tags:</strong> {item.tags}
                 </p>
 
                 <p className="mb-2">

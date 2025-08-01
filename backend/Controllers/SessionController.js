@@ -2,7 +2,7 @@ const Session = require("../Model/SessionModel.js");
 
 const sessions = async (req, res) => {
   try {
-    const data = await Session.find({});
+    const data = await Session.find({ status: "published" });
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch sessions" });
@@ -10,9 +10,9 @@ const sessions = async (req, res) => {
 };
 
 const mySessions = async (req, res) => {
-  const { user_id } = req.body;
+  const userId = req.userId;
   try {
-    const data = await Session.find({ user_id });
+    const data = await Session.find({ user_id: userId });
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch your session" });
