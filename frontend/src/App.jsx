@@ -14,7 +14,7 @@ import { jwtDecode } from "jwt-decode";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const url = "http://localhost:8000";
+  const url = "https://yoga-app-tm7n.onrender.com";
 
   useEffect(() => {
     if (token) {
