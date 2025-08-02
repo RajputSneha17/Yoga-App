@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/sessions", sessions);
 router.get("/my-sessions", authMiddleware, mySessions);
-router.get("/my-sessions/:id", authMiddleware, mySessionId);
+router.delete("/my-sessions/:id", authMiddleware, mySessionId);
 router.post("/my-sessions/save-draft", authMiddleware, saveDraft);
 router.post("/my-sessions/publish", authMiddleware, publish);
 

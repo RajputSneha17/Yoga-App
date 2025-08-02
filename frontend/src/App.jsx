@@ -5,33 +5,30 @@ import Home from "./Home/Home";
 import Create from "./Create";
 import Draft from "./Draft";
 import Sessions from "./Sessions";
+import Edit from "./Edit";
 import User from "./user";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode"; // 🧠 Import for decoding token
-
+import { jwtDecode } from "jwt-decode";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const url = "http://localhost:8000";
 
-  // 🧠 Token expiry checker (on every page load/refresh)
   useEffect(() => {
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        const currentTime = Date.now() / 1000; // in seconds
+        const currentTime = Date.now() / 1000;
 
         if (decoded.exp < currentTime) {
-          // ❌ Token expired, remove & redirect to login
           localStorage.removeItem("token");
           setToken(null);
           toast.info("Session expired. Please log in again.");
           window.location.href = "/user";
         }
       } catch (error) {
-        // ❌ Invalid token
         localStorage.removeItem("token");
         setToken(null);
         toast.error("Invalid token. Please log in again.");
@@ -48,9 +45,16 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/draft" element={<Draft token={token} url={url} />} />
-            <Route path="/createsession" element={<Create url={url} token={token} />} />
+            <Route
+              path="/createsession"
+              element={<Create url={url} token={token} />}
+            />
             <Route path="/oursession" element={<Sessions url={url} />} />
-            <Route path="/user" element={<User url={url} setToken={setToken} />} />
+            <Route
+              path="/user"
+              element={<User url={url} setToken={setToken} />}
+            />
+            <Route path="/edit" element={<Edit url={url} token={token} />} />
           </Routes>
         </main>
 

@@ -22,7 +22,7 @@ const mySessions = async (req, res) => {
 const mySessionId = async (req, res) => {
   const sessionId = req.params.id;
   try {
-    const data = await Session.findById(sessionId);
+    const data = await Session.findByIdAndDelete(sessionId);
     if (!data) {
       res.status(404).json({ error: "session not found" });
     } else {

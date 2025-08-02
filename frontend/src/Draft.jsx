@@ -19,6 +19,17 @@ const Draft = ({ token, url }) => {
     fetchData();
   }, []);
 
+  const deleteFunc = async (id) => {
+    try {
+      await axios.delete(`${url}/session/my-sessions/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (!token) {
     return (
       <div className="text-center py-5">
@@ -63,7 +74,19 @@ const Draft = ({ token, url }) => {
                 >
                   {item.status}
                 </span>
-                <button className="btn btn-outline-success px-4 ms-5">Edit</button>
+                <Link
+                  to="/edit"
+                  state={{ draft: item }}
+                  className="btn btn-outline-success px-4 ms-5"
+                >
+                  Edit
+                </Link>
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() => deleteFunc(item._id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
