@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const Draft = ({ token, url }) => {
   const [data, setData] = useState([]);
   const fetchData = async () => {
     try {
-      
-      console.log(token);
       const res = await axios.get(`${url}/session/my-sessions`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -19,6 +18,17 @@ const Draft = ({ token, url }) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (!token) {
+    return (
+      <div className="text-center py-5">
+        <h1>You must be logged in</h1>
+        <Link to="/user" className="btn btn-outline-success px-4">
+          Login
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="container py-4">
@@ -53,6 +63,7 @@ const Draft = ({ token, url }) => {
                 >
                   {item.status}
                 </span>
+                <button className="btn btn-outline-success px-4 ms-5">Edit</button>
               </div>
             </div>
           </div>

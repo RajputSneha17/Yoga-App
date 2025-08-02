@@ -63,7 +63,7 @@ const NavBar = ({setToken, token}) => {
                   isActive ? "active-link" : "nav-link"
                 }
               >
-                Draft
+                My Session
               </NavLink>
               <NavLink
                 to="/oursession"

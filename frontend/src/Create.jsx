@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Create = ({ url, token }) => {
   const [title, SetTitle] = useState("");
@@ -24,6 +24,17 @@ const Create = ({ url, token }) => {
       toast.error(errorMessage);
     }
   };
+
+  if (!token) {
+    return (
+      <div className="text-center py-5">
+        <h1>You must be logged in</h1>
+        <Link to="/user" className="btn btn-outline-success px-4">
+          Login
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="container mt-5">
