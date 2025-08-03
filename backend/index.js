@@ -8,6 +8,18 @@ const router = require("./routes/SessionRoute.js");
 const cors = require("cors");
 app.use(cors());
 
+const cron = require('node-cron');
+const axios = require('axios');
+
+cron.schedule('*/10 * * * *', async () => { 
+  try {
+    await axios.get('https://yoga-app-tm7n.onrender.com/'); 
+    console.log('server start again');
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+});
+
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("Connected!"));
 
 app.use(express.json());
