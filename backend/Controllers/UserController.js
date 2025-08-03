@@ -10,8 +10,11 @@ const register = async (req, res) => {
 
     const user = new User({ email, password: hashPassword });
     await user.save();
+    const token = jwt.sign({ userId: user._id }, process.env.MY_SECRET, {
+        expiresIn: "1d",
+      });
 
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({ token, message: "User registered successfully" });
   } catch (err) {
     res.status(500).json({ error: "Please Enter unique email" });
   }
