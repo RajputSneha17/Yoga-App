@@ -25,7 +25,7 @@ const Sessions = ({ url }) => {
           <div key={index} className="col-md-3">
             <div className="card p-4 text-center">
               <h3>{item.title}</h3>
-              <p>{item.tags}</p>
+              <p className="bg-success text-white ">{item.tags}</p>
               <p>{item.json_file_url}</p>
             </div>
           </div>
