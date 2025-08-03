@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Sessions = ({ url }) => {
   const [data, setData] = useState([]);
@@ -26,8 +26,7 @@ const Sessions = ({ url }) => {
             <div className="card p-4 text-center">
               <h3>{item.title}</h3>
               <p>{item.tags}</p>
-              <p>Status: {item.status}</p>
-              <button className="btn btn-outline-success">Learn More</button>
+              <p>{item.json_file_url}</p>
             </div>
           </div>
         ))}
